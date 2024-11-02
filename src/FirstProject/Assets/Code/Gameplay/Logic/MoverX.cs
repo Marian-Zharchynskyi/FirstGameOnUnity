@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 
-namespace Code
+namespace Code.Gameplay.Logic
 {
     public class MoverX : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _rigidBody;
         [SerializeField] private float _speed;
         public float Speed => _rigidBody.velocity.x;
+        public bool IsMoving => _rigidBody.velocity.x != 0;
 
         public void Move(float input)
         {
