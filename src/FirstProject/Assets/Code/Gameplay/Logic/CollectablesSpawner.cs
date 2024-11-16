@@ -1,28 +1,22 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Code.Gameplay.Logic
 {
-    public class EnemiesSpawner : MonoBehaviour
+    public class CollectablesSpawner : MonoBehaviour
     {
         [SerializeField] private float _spawnInterval = 2;
         [SerializeField] private GameObject _enemy;
-        private float _timer;
 
-        private void Start()
+        private IEnumerator Start()
         {
-            _timer = _spawnInterval;
-        }
-
-        private void Update()
-        {
-            _timer -= Time.deltaTime;
-            if (_timer <= 0)
+            while (true)
             {
+                yield return new WaitForSeconds(_spawnInterval);
                 SpawnEnemy();
-                _timer = _spawnInterval;
             }
         }
-
+        
         private void SpawnEnemy()
         {
             Instantiate(_enemy, gameObject.transform);
